@@ -1,9 +1,40 @@
 [gd_scene format=3 uid="uid://ddmlys6dvjwle"]
 
+[ext_resource type="Script" uid="uid://gytnex61hjs2" path="res://src/card.gd" id="1_d81rb"]
+[ext_resource type="Texture2D" uid="uid://cwp2gwnd0shwv" path="res://resources/ui/card_faces.tres" id="2_6u4wf"]
+
 [node name="Card" type="Control" unique_id=478096717]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d81rb")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=685412814]
+layout_mode = 1
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1005598659]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="CardFace" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=836459905]
+unique_name_in_owner = true
+position = Vector2(21, 30)
+texture = ExtResource("2_6u4wf")
+
+[node name="Button" type="Button" parent="." unique_id=1908390874]
+layout_mode = 1
+offset_right = 42.0
+offset_bottom = 60.0
+flat = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
